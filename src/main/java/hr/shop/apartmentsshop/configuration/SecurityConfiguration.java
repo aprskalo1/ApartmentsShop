@@ -22,6 +22,9 @@ public class SecurityConfiguration {
                         .requestMatchers(
                                 "/h2-console/**"
                         ).hasRole("ADMIN")
+                        .requestMatchers(
+                                "/categories"
+                        ).hasAnyRole("USER", "ADMIN")
                         .anyRequest().permitAll()
                 )
                 .formLogin(form -> form.defaultSuccessUrl("/"))
