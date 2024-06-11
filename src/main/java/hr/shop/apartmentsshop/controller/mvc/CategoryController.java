@@ -49,9 +49,9 @@ public class CategoryController {
         return "redirect:/categories";
     }
 
-    @PostMapping("/deleteMovieGenre")
-    public String deleteMovieGenre(Model model, Category movieGenre) {
-        categoryService.deleteCategory(movieGenre.getId());
+    @PostMapping("/deleteCategory")
+    public String deleteCategory(Model model, Category category) {
+        categoryService.deleteCategory(category.getId());
         return "redirect:/categories";
     }
 }
