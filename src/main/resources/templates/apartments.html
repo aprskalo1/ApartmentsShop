@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="en" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="base">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+</head>
+<div layout:fragment="content">
+    <form action="/apartments/getApartments" method="get">
+        <label>
+            <input type="text" name="searchTerm" placeholder="Search...">
+        </label>
+        <button type="submit">Search</button>
+    </form>
+    <table>
+        <thead>
+        <tr>
+            <th>Location</th>
+            <th>Price</th>
+            <th>Size</th>
+            <th>Rooms</th>
+            <th>Quantity</th>
+            <th>Picture</th>
+            <th>Category</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="apartment : ${apartments}">
+            <td th:text="${apartment.location}"></td>
+            <td th:text="${apartment.price}"></td>
+            <td th:text="${apartment.size}"></td>
+            <td th:text="${apartment.rooms}"></td>
+            <td th:text="${apartment.quantity}"></td>
+            <td><img th:src="@{${apartment.pictureUrl}}" alt="Picture"/></td>
+            <td th:text="${apartment.category.name}"></td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+</html>
