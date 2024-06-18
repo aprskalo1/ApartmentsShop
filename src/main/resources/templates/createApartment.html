@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="en" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="base">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Create Apartment</title>
+</head>
+<div layout:fragment="content" class="container mt-5">
+    <h1>Create New Apartment</h1>
+    <form th:action="@{/apartments/create}" th:object="${apartment}" method="post">
+        <div class="form-group">
+            <label for="location">Location:</label>
+            <input type="text" class="form-control" id="location" th:field="*{location}" required/>
+            <div class="invalid-feedback">
+                Please provide a location.
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="price">Price:</label>
+            <input type="number" class="form-control" step="0.01" id="price" th:field="*{price}" required/>
+            <div class="invalid-feedback">
+                Please provide a price.
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="size">Size:</label>
+            <input type="number" class="form-control" step="0.01" id="size" th:field="*{size}" required/>
+            <div class="invalid-feedback">
+                Please provide a size.
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="rooms">Rooms:</label>
+            <input type="number" class="form-control" id="rooms" th:field="*{rooms}" required/>
+            <div class="invalid-feedback">
+                Please provide the number of rooms.
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="quantity">Quantity:</label>
+            <input type="number" class="form-control" id="quantity" th:field="*{quantity}" required/>
+            <div class="invalid-feedback">
+                Please provide a quantity.
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="pictureUrl">Picture URL:</label>
+            <input type="text" class="form-control" id="pictureUrl" th:field="*{pictureUrl}" required/>
+            <div class="invalid-feedback">
+                Please provide a picture URL.
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="categoryId">Category:</label>
+            <select class="form-control" id="categoryId" th:field="*{categoryId}" required>
+                <option th:each="category : ${categories}" th:value="${category.id}"
+                        th:text="${category.name}"></option>
+            </select>
+            <div class="invalid-feedback">
+                Please select a category.
+            </div>
+        </div>
+
+        <button type="submit" class="btn btn-primary mt-2">Create</button>
+    </form>
+</div>
+</html>

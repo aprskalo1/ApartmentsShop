@@ -17,8 +17,8 @@ INSERT INTO Category(name) VALUES('Small');
 INSERT INTO Category(name) VALUES('Medium');
 INSERT INTO Category(name) VALUES('Big');
 
-INSERT INTO Apartment(location, price, size, rooms, quantity, pictureUrl, category_id) VALUES('New York', 1500.00, 30.0, 2, 5, 'http://example.com/ny.jpg', 1);
-INSERT INTO Apartment(location, price, size, rooms, quantity, pictureUrl, category_id) VALUES('Los Angeles', 2500.00, 50.0, 3, 3, 'http://example.com/la.jpg', 2);
-INSERT INTO Apartment(location, price, size, rooms, quantity, pictureUrl, category_id) VALUES('Chicago', 3500.00, 70.0, 4, 2, 'http://example.com/chicago.jpg', 3);
-INSERT INTO Apartment(location, price, size, rooms, quantity, pictureUrl, category_id) VALUES('Miami', 2000.00, 40.0, 2, 4, 'http://example.com/miami.jpg', 2);
-INSERT INTO Apartment(location, price, size, rooms, quantity, pictureUrl, category_id) VALUES('San Francisco', 3000.00, 60.0, 3, 1, 'http://example.com/sf.jpg', 3);
+INSERT INTO Apartment(location, price, size, rooms, quantity, pictureUrl, category_id) VALUES('New York', 1500.00, 30.0, 2, 5, 'https://www.apartments.com/blog/sites/default/files/styles/small/public/image/2023-06/ParkLine-apartment-in-Miami-FL.jpg?itok=e9OGR_ew', 1);
+INSERT INTO Apartment(location, price, size, rooms, quantity, pictureUrl, category_id) VALUES('Los Angeles', 2500.00, 50.0, 3, 3, 'https://www.apartments.com/blog/sites/default/files/styles/small/public/image/2023-06/ParkLine-apartment-in-Miami-FL.jpg?itok=e9OGR_ew', 2);
+INSERT INTO Apartment(location, price, size, rooms, quantity, pictureUrl, category_id) VALUES('Chicago', 3500.00, 70.0, 4, 2, 'https://www.apartments.com/blog/sites/default/files/styles/small/public/image/2023-06/ParkLine-apartment-in-Miami-FL.jpg?itok=e9OGR_ew', 3);
+INSERT INTO Apartment(location, price, size, rooms, quantity, pictureUrl, category_id) VALUES('Miami', 2000.00, 40.0, 2, 4, 'https://www.apartments.com/blog/sites/default/files/styles/small/public/image/2023-06/ParkLine-apartment-in-Miami-FL.jpg?itok=e9OGR_ew', 2);
+INSERT INTO Apartment(location, price, size, rooms, quantity, pictureUrl, category_id) VALUES('San Francisco', 3000.00, 60.0, 3, 1, 'https://www.apartments.com/blog/sites/default/files/styles/small/public/image/2023-06/ParkLine-apartment-in-Miami-FL.jpg?itok=e9OGR_ew', 3);

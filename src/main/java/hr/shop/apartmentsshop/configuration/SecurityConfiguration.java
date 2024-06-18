@@ -20,15 +20,22 @@ public class SecurityConfiguration {
                 .headers(headers -> headers.frameOptions(HeadersConfigurer.FrameOptionsConfig::disable))
                 .authorizeHttpRequests(request -> request
                         .requestMatchers(
-                                "/h2-console/**"
+                                "/h2-console/**",
+                                "/apartments/create"
                         ).hasRole("ADMIN")
-                        .requestMatchers(
-                                "/categories"
-                        ).hasAnyRole("USER", "ADMIN")
                         .anyRequest().permitAll()
                 )
-                .formLogin(form -> form.defaultSuccessUrl("/"))
-                .logout(logout -> logout.logoutSuccessUrl("/"));
+                .formLogin(form -> form
+                        .defaultSuccessUrl("/", true)
+                        .permitAll()
+                )
+                .logout(logout -> logout
+                        .logoutUrl("/logout")
+                        .logoutSuccessUrl("/")
+                        .invalidateHttpSession(true)
+                        .deleteCookies("JSESSIONID")
+                        .permitAll()
+                );
         return http.build();
     }
 

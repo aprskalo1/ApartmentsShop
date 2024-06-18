@@ -7,35 +7,36 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
 </head>
 <div layout:fragment="content">
-    <form action="/apartments/getApartments" method="get">
-        <label>
-            <input type="text" name="searchTerm" placeholder="Search...">
-        </label>
-        <button type="submit">Search</button>
-    </form>
-    <table>
-        <thead>
-        <tr>
-            <th>Location</th>
-            <th>Price</th>
-            <th>Size</th>
-            <th>Rooms</th>
-            <th>Quantity</th>
-            <th>Picture</th>
-            <th>Category</th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr th:each="apartment : ${apartments}">
-            <td th:text="${apartment.location}"></td>
-            <td th:text="${apartment.price}"></td>
-            <td th:text="${apartment.size}"></td>
-            <td th:text="${apartment.rooms}"></td>
-            <td th:text="${apartment.quantity}"></td>
-            <td><img th:src="@{${apartment.pictureUrl}}" alt="Picture"/></td>
-            <td th:text="${apartment.category.name}"></td>
-        </tr>
-        </tbody>
-    </table>
+    <div class="d-flex justify-content-between mb-4 w-100">
+        <form action="/apartments/getApartments" method="get">
+            <div class="input-group">
+                <label>
+                    <input type="text" name="searchTerm" class="form-control" placeholder="Search...">
+                </label>
+                <div class="input-group-append">
+                    <button type="submit" class="btn btn-primary">Search</button>
+                </div>
+            </div>
+        </form>
+        <a href="/apartments/create" class="btn btn-secondary">Add New</a>
+    </div>
+    <div class="row">
+        <div th:each="apartment : ${apartments}"
+             th:classappend="${#lists.size(apartments) == 1} ? '' : 'col-md-4 mb-4 w-25'">
+            <div class="card h-100">
+                <img th:src="@{${apartment.pictureUrl}}" class="card-img-top" alt="Picture"/>
+                <div class="card-body">
+                    <h5 class="card-title" th:text="${apartment.location}"></h5>
+                    <p class="card-text">
+                        <strong>Price:</strong> <span th:text="${apartment.price}"></span><br>
+                        <strong>Size:</strong> <span th:text="${apartment.size}"></span><br>
+                        <strong>Rooms:</strong> <span th:text="${apartment.rooms}"></span><br>
+                        <strong>Quantity:</strong> <span th:text="${apartment.quantity}"></span><br>
+                        <strong>Category:</strong> <span th:text="${apartment.category.name}"></span>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
 </html>
