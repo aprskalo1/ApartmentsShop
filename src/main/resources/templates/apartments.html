@@ -1,5 +1,8 @@
 <!doctype html>
-<html lang="en" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="base">
+<html lang="en"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="base"
+      xmlns:sec="http://www.w3.org/1999/xhtml"
+>
 <head>
     <meta charset="UTF-8">
     <meta name="viewport"
@@ -18,7 +21,7 @@
                 </div>
             </div>
         </form>
-        <a href="/apartments/create" class="btn btn-secondary">Add New</a>
+        <a sec:authorize="hasRole('ROLE_ADMIN')" href="/apartments/create" class="btn btn-secondary">Add New</a>
     </div>
     <div class="row">
         <div th:each="apartment : ${apartments}"
