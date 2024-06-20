@@ -24,7 +24,7 @@ public class ApartmentController {
     private final CategoryRepository categoryRepository;
     private ApartmentService apartmentService;
 
-    @GetMapping("/getApartments")
+    @GetMapping("/get")
     public String getApartments(@RequestParam(value = "searchTerm", required = false) String searchTerm, Model model) {
         List<ApartmentResDTO> apartments = apartmentService.getApartments(searchTerm);
         model.addAttribute("apartments", apartments);
@@ -42,6 +42,12 @@ public class ApartmentController {
     @PostMapping("/create")
     public String createApartment(ApartmentReqDTO apartmentReqDTO) {
         apartmentService.createApartment(apartmentReqDTO);
-        return "redirect:/apartments/getApartments";
+        return "redirect:/apartments/get";
+    }
+
+    @PostMapping("/delete")
+    public String deleteApartment(@RequestParam("apartmentId") Integer apartmentId) {
+        apartmentService.deleteApartment(apartmentId);
+        return "redirect:/apartments/get";
     }
 }

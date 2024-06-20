@@ -36,6 +36,11 @@ public class ApartmentServiceImpl implements ApartmentService {
         apartmentRepository.save(apartment);
     }
 
+    @Override
+    public void deleteApartment(Integer apartmentId) {
+        apartmentRepository.deleteById(apartmentId);
+    }
+
     private ApartmentResDTO mapApartmentToApartmentResDTO(Apartment apartment) {
         return new ApartmentResDTO(
                 apartment.getId(),
