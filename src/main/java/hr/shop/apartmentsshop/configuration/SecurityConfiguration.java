@@ -21,7 +21,8 @@ public class SecurityConfiguration {
                 .authorizeHttpRequests(request -> request
                         .requestMatchers(
                                 "/h2-console/**",
-                                "/apartments/create"
+                                "/apartments/create",
+                                "/apartments/delete"
                         ).hasRole("ADMIN")
                         .anyRequest().permitAll()
                 )

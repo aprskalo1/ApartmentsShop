@@ -41,6 +41,22 @@ public class ApartmentServiceImpl implements ApartmentService {
         apartmentRepository.deleteById(apartmentId);
     }
 
+    @Override
+    public void updateApartment(ApartmentReqDTO apartmentReqDTO) {
+        Category category = categoryRepository.findById(apartmentReqDTO.getCategoryId())
+                .orElseThrow(() -> new IllegalArgumentException("Invalid category ID"));
+
+        Apartment apartment = mapApartmentReqDTOToApartment(apartmentReqDTO, category);
+        apartmentRepository.save(apartment);
+    }
+
+    @Override
+    public ApartmentResDTO getApartmentById(Integer apartmentId) {
+        Apartment apartment = apartmentRepository.findById(apartmentId)
+                .orElseThrow(() -> new IllegalArgumentException("Invalid apartment ID"));
+        return mapApartmentToApartmentResDTO(apartment);
+    }
+
     private ApartmentResDTO mapApartmentToApartmentResDTO(Apartment apartment) {
         return new ApartmentResDTO(
                 apartment.getId(),
@@ -56,7 +72,7 @@ public class ApartmentServiceImpl implements ApartmentService {
 
     private Apartment mapApartmentReqDTOToApartment(ApartmentReqDTO apartmentReqDTO, Category category) {
         return new Apartment(
-                null,
+                apartmentReqDTO.getId(),
                 apartmentReqDTO.getLocation(),
                 apartmentReqDTO.getPrice(),
                 apartmentReqDTO.getSize(),

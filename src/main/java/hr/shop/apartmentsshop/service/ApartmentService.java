@@ -9,4 +9,6 @@ public interface ApartmentService {
     List<ApartmentResDTO> getApartments(String searchTerm);
     void createApartment(ApartmentReqDTO apartmentReqDTO);
     void deleteApartment(Integer apartmentId);
+    void updateApartment(ApartmentReqDTO apartmentReqDTO);
+    ApartmentResDTO getApartmentById(Integer apartmentId);
 }

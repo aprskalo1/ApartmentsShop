@@ -6,7 +6,6 @@ import hr.shop.apartmentsshop.model.Category;
 import hr.shop.apartmentsshop.repository.CategoryRepository;
 import hr.shop.apartmentsshop.service.ApartmentService;
 import lombok.AllArgsConstructor;
-import lombok.NoArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -36,7 +35,7 @@ public class ApartmentController {
         List<Category> categories = categoryRepository.findAll();
         model.addAttribute("apartment", new ApartmentReqDTO());
         model.addAttribute("categories", categories);
-        return "createApartment";
+        return "apartmentCreate";
     }
 
     @PostMapping("/create")
@@ -48,6 +47,21 @@ public class ApartmentController {
     @PostMapping("/delete")
     public String deleteApartment(@RequestParam("apartmentId") Integer apartmentId) {
         apartmentService.deleteApartment(apartmentId);
+        return "redirect:/apartments/get";
+    }
+
+    @GetMapping("/update")
+    public String showUpdateForm(@RequestParam("apartmentId") Integer apartmentId, Model model) {
+        ApartmentResDTO apartment = apartmentService.getApartmentById(apartmentId);
+        List<Category> categories = categoryRepository.findAll();
+        model.addAttribute("apartment", apartment);
+        model.addAttribute("categories", categories);
+        return "apartmentUpdate";
+    }
+
+    @PostMapping("/update")
+    public String updateApartment(ApartmentReqDTO apartmentReqDTO) {
+        apartmentService.updateApartment(apartmentReqDTO);
         return "redirect:/apartments/get";
     }
 }

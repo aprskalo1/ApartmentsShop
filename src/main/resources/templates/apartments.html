@@ -38,7 +38,8 @@
                         <strong>Category:</strong> <span th:text="${apartment.category.name}"></span>
                     </p>
                     <div class="d-flex justify-content-end">
-                        <form th:action="@{/apartments/delete}" method="post" sec:authorize="hasRole('ROLE_ADMIN')">
+                        <a th:href="@{/apartments/update(apartmentId=${apartment.id})}" class="btn btn-outline-primary me-1" sec:authorize="hasRole('ROLE_ADMIN')">Update</a>
+                        <form th:action="@{/apartments/delete}" method="post" sec:authorize="hasRole('ROLE_ADMIN')" class="mr-2">
                             <input type="hidden" name="apartmentId" th:value="${apartment.id}" />
                             <button type="submit" class="btn btn-danger">Delete</button>
                         </form>

@@ -8,6 +8,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class ApartmentReqDTO {
+    private Integer id;
     private String location;
     private Double price;
     private Double size;

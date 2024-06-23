@@ -13,49 +13,31 @@
         <div class="form-group">
             <label for="location">Location:</label>
             <input type="text" class="form-control" id="location" th:field="*{location}" required/>
-            <div class="invalid-feedback">
-                Please provide a location.
-            </div>
         </div>
 
         <div class="form-group">
             <label for="price">Price:</label>
             <input type="number" class="form-control" step="0.01" id="price" th:field="*{price}" required/>
-            <div class="invalid-feedback">
-                Please provide a price.
-            </div>
         </div>
 
         <div class="form-group">
             <label for="size">Size:</label>
             <input type="number" class="form-control" step="0.01" id="size" th:field="*{size}" required/>
-            <div class="invalid-feedback">
-                Please provide a size.
-            </div>
         </div>
 
         <div class="form-group">
             <label for="rooms">Rooms:</label>
             <input type="number" class="form-control" id="rooms" th:field="*{rooms}" required/>
-            <div class="invalid-feedback">
-                Please provide the number of rooms.
-            </div>
         </div>
 
         <div class="form-group">
             <label for="quantity">Quantity:</label>
             <input type="number" class="form-control" id="quantity" th:field="*{quantity}" required/>
-            <div class="invalid-feedback">
-                Please provide a quantity.
-            </div>
         </div>
 
         <div class="form-group">
             <label for="pictureUrl">Picture URL:</label>
             <input type="text" class="form-control" id="pictureUrl" th:field="*{pictureUrl}" required/>
-            <div class="invalid-feedback">
-                Please provide a picture URL.
-            </div>
         </div>
 
         <div class="form-group">
@@ -64,9 +46,6 @@
                 <option th:each="category : ${categories}" th:value="${category.id}"
                         th:text="${category.name}"></option>
             </select>
-            <div class="invalid-feedback">
-                Please select a category.
-            </div>
         </div>
 
         <button type="submit" class="btn btn-primary mt-2">Create</button>
