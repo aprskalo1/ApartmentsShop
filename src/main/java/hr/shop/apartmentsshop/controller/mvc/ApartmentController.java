@@ -8,10 +8,7 @@ import hr.shop.apartmentsshop.service.ApartmentService;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -60,8 +57,8 @@ public class ApartmentController {
     }
 
     @PostMapping("/update")
-    public String updateApartment(ApartmentReqDTO apartmentReqDTO) {
-        apartmentService.updateApartment(apartmentReqDTO);
+    public String updateApartment(@ModelAttribute ApartmentResDTO apartmentResDTO) {
+        apartmentService.updateApartment(apartmentResDTO);
         return "redirect:/apartments/get";
     }
 }

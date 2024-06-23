@@ -42,7 +42,8 @@ public class ApartmentServiceImpl implements ApartmentService {
     }
 
     @Override
-    public void updateApartment(ApartmentReqDTO apartmentReqDTO) {
+    public void updateApartment(ApartmentResDTO apartmentResDTO) {
+        ApartmentReqDTO apartmentReqDTO = mapApartmentResDTOToApartmentReqDTO(apartmentResDTO);
         Category category = categoryRepository.findById(apartmentReqDTO.getCategoryId())
                 .orElseThrow(() -> new IllegalArgumentException("Invalid category ID"));
 
@@ -80,6 +81,19 @@ public class ApartmentServiceImpl implements ApartmentService {
                 apartmentReqDTO.getQuantity(),
                 apartmentReqDTO.getPictureUrl(),
                 category
+        );
+    }
+
+    private ApartmentReqDTO mapApartmentResDTOToApartmentReqDTO(ApartmentResDTO apartmentResDTO) {
+        return new ApartmentReqDTO(
+                apartmentResDTO.getId(),
+                apartmentResDTO.getLocation(),
+                apartmentResDTO.getPrice(),
+                apartmentResDTO.getSize(),
+                apartmentResDTO.getRooms(),
+                apartmentResDTO.getQuantity(),
+                apartmentResDTO.getPictureUrl(),
+                apartmentResDTO.getCategory().getId()
         );
     }
 }
