@@ -15,7 +15,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 @RequestMapping
 @AllArgsConstructor
 public class CategoryController {
-    private CategoryService categoryService;
+    private final CategoryService categoryService;
 
     @GetMapping("/categories")
     public String getCategories(Model model) {

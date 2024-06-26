@@ -16,9 +16,8 @@ import java.util.List;
 @RequestMapping("/apartments")
 @AllArgsConstructor
 public class ApartmentController {
-
     private final CategoryRepository categoryRepository;
-    private ApartmentService apartmentService;
+    private final ApartmentService apartmentService;
 
     @GetMapping("/get")
     public String getApartments(@RequestParam(value = "searchTerm", required = false) String searchTerm, Model model) {

@@ -12,7 +12,7 @@ import org.springframework.stereotype.Service;
 @Service
 @AllArgsConstructor
 public class UserService implements UserDetailsService {
-    private UserRepository userRepository;
+    private final UserRepository userRepository;
 
     @Override
     public UserDetails loadUserByUsername(String username) {
@@ -36,5 +36,9 @@ public class UserService implements UserDetailsService {
                 .credentialsExpired(false)
                 .disabled(false)
                 .build();
+    }
+
+    public User findByUsername(String username) {
+        return userRepository.findByUsername(username);
     }
 }

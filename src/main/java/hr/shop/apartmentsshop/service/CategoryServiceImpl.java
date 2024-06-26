@@ -1,6 +1,7 @@
 package hr.shop.apartmentsshop.service;
 
 import hr.shop.apartmentsshop.model.Category;
+import hr.shop.apartmentsshop.repository.ApartmentRepository;
 import hr.shop.apartmentsshop.repository.CategoryRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -10,7 +11,8 @@ import java.util.List;
 @Service
 @AllArgsConstructor
 public class CategoryServiceImpl implements CategoryService {
-    private CategoryRepository categoryRepository;
+    private final CategoryRepository categoryRepository;
+    private final ApartmentRepository apartmentRepository;
 
     @Override
     public List<Category> getCategories() {
@@ -24,6 +26,7 @@ public class CategoryServiceImpl implements CategoryService {
 
     @Override
     public void deleteCategory(Integer id) {
+        if (apartmentRepository.existsByCategoryId(id)) throw new RuntimeException("Category is in use");
         categoryRepository.deleteById(id);
     }
 

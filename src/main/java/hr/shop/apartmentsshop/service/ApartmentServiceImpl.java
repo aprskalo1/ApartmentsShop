@@ -4,6 +4,7 @@ import hr.shop.apartmentsshop.dto.ApartmentReqDTO;
 import hr.shop.apartmentsshop.dto.ApartmentResDTO;
 import hr.shop.apartmentsshop.model.Apartment;
 import hr.shop.apartmentsshop.model.Category;
+import hr.shop.apartmentsshop.model.MyCartItem;
 import hr.shop.apartmentsshop.repository.ApartmentRepository;
 import hr.shop.apartmentsshop.repository.CategoryRepository;
 import hr.shop.apartmentsshop.specification.ApartmentSpecification;
@@ -17,7 +18,8 @@ import java.util.List;
 @AllArgsConstructor
 public class ApartmentServiceImpl implements ApartmentService {
     private final CategoryRepository categoryRepository;
-    private ApartmentRepository apartmentRepository;
+    private final ApartmentRepository apartmentRepository;
+    private final MyCartService myCartService;
 
     @Override
     public List<ApartmentResDTO> getApartments(String searchTerm) {
@@ -38,6 +40,7 @@ public class ApartmentServiceImpl implements ApartmentService {
 
     @Override
     public void deleteApartment(Integer apartmentId) {
+        myCartService.deleteAllWithApartmentId(apartmentId);
         apartmentRepository.deleteById(apartmentId);
     }
 
