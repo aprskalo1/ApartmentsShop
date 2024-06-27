@@ -28,6 +28,9 @@
                     <input type="hidden" name="apartmentId" th:value="${cartItem.apartment.id}">
                     <button type="submit" class="btn btn-danger">-</button>
                 </form>
+                <form th:action="@{/paypal/payment/create}" method="post">
+                    <button type="submit" class="btn btn-primary">Buy with PayPal</button>
+                </form>
             </td>
         </tr>
         </tbody>
