@@ -22,12 +22,19 @@ public class SecurityConfiguration {
                         .requestMatchers(
                                 "/h2-console/**",
                                 "/apartments/create",
-                                "/apartments/delete"
+                                "/apartments/delete",
+                                "/purchase/allPurchases"
                         ).hasRole("ADMIN")
+                        .requestMatchers(
+                                "paypal/payment/create",
+                                "/paypal/payment/cancel",
+                                "/paypal/payment/success",
+                                "/purchase/myPurchases"
+                        ).hasAnyRole("USER", "ADMIN")
                         .anyRequest().permitAll()
                 )
                 .formLogin(form -> form
-                        .defaultSuccessUrl("/", true)
+                        .defaultSuccessUrl("/")
                         .permitAll()
                 )
                 .logout(logout -> logout

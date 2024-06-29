@@ -23,12 +23,14 @@
             <td th:text="${cartItem.apartment.location}">Apartment Location</td>
             <td th:text="${cartItem.quantity}">Quantity</td>
             <td th:text="${cartItem.totalPrice}">Total Price</td>
-            <td>
-                <form th:action="@{/myCart/remove}" method="post">
+            <td class="d-flex">
+                <form th:action="@{/myCart/remove}" method="post" class="me-1">
                     <input type="hidden" name="apartmentId" th:value="${cartItem.apartment.id}">
                     <button type="submit" class="btn btn-danger">-</button>
                 </form>
                 <form th:action="@{/paypal/payment/create}" method="post">
+                    <input type="hidden" name="totalPrice" th:value="${cartItem.totalPrice}"/>
+                    <input type="hidden" name="myCartItemId" th:value="${cartItem.id}"/>
                     <button type="submit" class="btn btn-primary">Buy with PayPal</button>
                 </form>
             </td>

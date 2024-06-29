@@ -1,0 +1,34 @@
+<!doctype html>
+<html lang="en" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="base"
+      xmlns:sec="https://www.thymeleaf.org/extras/spring-security">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>My Purchases</title>
+</head>
+<div layout:fragment="content">
+    <h2 class="mb-4">My Purchases</h2>
+    <table class="table table-bordered table-striped">
+        <thead>
+        <tr>
+            <th>Customer</th>
+            <th>Apartment Location</th>
+            <th>Quantity</th>
+            <th>Purchase Date</th>
+            <th>Purchase Type</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="purchase : ${purchases}">
+            <td th:text="${purchase.getUser().username}" sec:authorize="hasRole('ROLE_ADMIN')">Customer</td>
+            <td th:text="${purchase.apartmentLocation}">Apartment Location</td>
+            <td th:text="${purchase.quantity}">Quantity</td>
+            <td th:text="${#dates.format(purchase.purchaseDate, 'yyyy-MM-dd HH:mm')}">Purchase Date</td>
+            <td th:text="${purchase.purchaseType}">Purchase Type</td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+</html>

@@ -99,6 +99,7 @@ public class MyCartServiceImpl implements MyCartService {
 
     @Override
     public List<MyCartItem> getCartItemsWithoutUser() {
+        //return only with isBought = false flag
         return myCartRepository.findByUserIsNull();
     }
 

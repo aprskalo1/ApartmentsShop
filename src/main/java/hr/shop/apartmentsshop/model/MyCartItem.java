@@ -28,4 +28,7 @@ public class MyCartItem {
 
     @Column(name = "totalPrice", nullable = false)
     private Double totalPrice;
+
+    @Column(name = "isBought", nullable = false)
+    private Boolean isBought = false;
 }
