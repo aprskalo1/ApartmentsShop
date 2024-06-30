@@ -23,7 +23,9 @@ public class ApartmentServiceImpl implements ApartmentService {
 
     @Override
     public List<ApartmentResDTO> getApartments(String searchTerm) {
-        Specification<Apartment> spec = ApartmentSpecification.containsSearchTerm(searchTerm);
+        Specification<Apartment> spec = ApartmentSpecification.containsSearchTerm(searchTerm)
+                .and(ApartmentSpecification.hasQuantityGreaterThanZero());
+
         return apartmentRepository.findAll(spec).stream()
                 .map(this::mapApartmentToApartmentResDTO)
                 .toList();

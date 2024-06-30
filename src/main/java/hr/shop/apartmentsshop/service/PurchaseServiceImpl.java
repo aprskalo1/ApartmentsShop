@@ -6,8 +6,12 @@ import hr.shop.apartmentsshop.model.PurchaseType;
 import hr.shop.apartmentsshop.model.User;
 import hr.shop.apartmentsshop.repository.MyCartRepository;
 import hr.shop.apartmentsshop.repository.PurchaseRepository;
+import hr.shop.apartmentsshop.specification.ApartmentSpecification;
+import hr.shop.apartmentsshop.specification.PurchaseSpecification;
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
+import org.springframework.data.domain.Sort;
+import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 
 import java.util.Date;
@@ -35,7 +39,9 @@ public class PurchaseServiceImpl implements PurchaseService {
     }
 
     @Override
-    public List<Purchase> findAllByUserId() {
-        return purchaseRepository.findAll();
+    public List<Purchase> findAllFiltered(Date startDate, Date endDate, String customerName) {
+        Specification<Purchase> spec = PurchaseSpecification.customerNameContains(customerName)
+                .and(PurchaseSpecification.purchaseDateBetween(startDate, endDate));
+        return purchaseRepository.findAll(spec);
     }
 }

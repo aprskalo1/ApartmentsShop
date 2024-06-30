@@ -5,10 +5,11 @@ import hr.shop.apartmentsshop.model.Purchase;
 import hr.shop.apartmentsshop.model.PurchaseType;
 import hr.shop.apartmentsshop.model.User;
 
+import java.util.Date;
 import java.util.List;
 
 public interface PurchaseService {
     void addPurchase(User user, Integer myCartItemId, PurchaseType purchaseType);
     List<Purchase> findAllByUserId(Integer userId);
-    List<Purchase> findAllByUserId();
+    List<Purchase> findAllFiltered(Date startDate, Date endDate, String customerName);
 }

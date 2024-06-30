@@ -17,4 +17,9 @@ public class ApartmentSpecification {
             );
         };
     }
+
+    public static Specification<Apartment> hasQuantityGreaterThanZero() {
+        return (root, query, criteriaBuilder) ->
+                criteriaBuilder.greaterThan(root.get("quantity"), 0);
+    }
 }
