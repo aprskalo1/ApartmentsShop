@@ -65,11 +65,20 @@ CREATE TYPE purchase_type_enum AS ENUM ('CASH', 'PAYPAL');
 -- purchase
 CREATE TABLE Purchase
 (
-    id                INT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
-    user_id           INT                NOT NULL,
-    apartment_location VARCHAR(255)      NOT NULL,
-    quantity          INT                NOT NULL,
-    purchase_date     TIMESTAMP          NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    purchase_type     VARCHAR(50)        NOT NULL,
+    id                 INT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
+    user_id            INT          NOT NULL,
+    apartment_location VARCHAR(255) NOT NULL,
+    quantity           INT          NOT NULL,
+    purchase_date      TIMESTAMP    NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    purchase_type      VARCHAR(50)  NOT NULL,
     FOREIGN KEY (user_id) REFERENCES "User" (id)
+);
+
+-- login log
+CREATE TABLE LoginLog
+(
+    id         INT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
+    username   VARCHAR(30) NOT NULL,
+    ip_address VARCHAR(45) NOT NULL,
+    login_time TIMESTAMP   NOT NULL DEFAULT CURRENT_TIMESTAMP
 );

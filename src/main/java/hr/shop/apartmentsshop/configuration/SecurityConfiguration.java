@@ -1,5 +1,7 @@
 package hr.shop.apartmentsshop.configuration;
 
+import hr.shop.apartmentsshop.listener.LoginSuccessEventListener;
+import hr.shop.apartmentsshop.publisher.AuthenticationSuccessEventPublisher;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -23,7 +25,8 @@ public class SecurityConfiguration {
                                 "/h2-console/**",
                                 "/apartments/create",
                                 "/apartments/delete",
-                                "/purchase/allPurchases"
+                                "/purchase/allPurchases",
+                                "/log/loginlog"
                         ).hasRole("ADMIN")
                         .requestMatchers(
                                 "paypal/payment/create",
@@ -43,6 +46,9 @@ public class SecurityConfiguration {
                         .invalidateHttpSession(true)
                         .deleteCookies("JSESSIONID")
                         .permitAll()
+                )
+                .exceptionHandling(exception -> exception
+                        .accessDeniedPage("/403")
                 );
         return http.build();
     }
@@ -50,5 +56,15 @@ public class SecurityConfiguration {
     @Bean
     public BCryptPasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
+    }
+
+    @Bean
+    public AuthenticationSuccessEventPublisher authenticationSuccessEventPublisher() {
+        return new AuthenticationSuccessEventPublisher();
+    }
+
+    @Bean
+    public LoginSuccessEventListener loginSuccessEventListener() {
+        return new LoginSuccessEventListener();
     }
 }

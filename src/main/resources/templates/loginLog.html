@@ -1,0 +1,29 @@
+<!doctype html>
+<html lang="en" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="base">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Login Logs</title>
+</head>
+<div layout:fragment="content">
+    <h2 class="mb-4">Login Logs</h2>
+    <table class="table table-bordered table-striped">
+        <thead>
+        <tr>
+            <th>Username</th>
+            <th>IP Address</th>
+            <th>Login Time</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="log : ${loginLogs}">
+            <td th:text="${log.username}">Username</td>
+            <td th:text="${log.ipAddress}">IP Address</td>
+            <td th:text="${#temporals.format(log.loginTime, 'yyyy-MM-dd HH:mm')}">Login Time</td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+</html>

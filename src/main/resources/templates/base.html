@@ -35,6 +35,9 @@
                     <li class="nav-item">
                         <a class="nav-link" href="/myCart/view">My Cart</a>
                     </li>
+                    <li class="nav-item" sec:authorize="hasRole('ROLE_ADMIN')">
+                        <a class="nav-link" href="/log/loginlog">Log</a>
+                    </li>
                 </ul>
                 <div class="d-flex ms-auto">
                     <a sec:authorize="!isAuthenticated()" class="btn btn-outline-primary" th:href="@{/login}">Login</a>
